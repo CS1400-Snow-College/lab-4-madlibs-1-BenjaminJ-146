@@ -25,11 +25,12 @@ string[] storyWords = originalStory.Split(' ');
 string newStory = "";
 for (int i = 0; i < storyWords.Length; i++)
 {
+    // Searching for replacable words
     string currentWord = storyWords[i];
-    if (currentWord.StartsWith("(")) // Searching for replacable word
+    if (currentWord.StartsWith("(")) 
     {
-        char[] temp = new char[currentWord.Length];
-        // Removing '(' ')' and '-' from words
+         // Removing '(' ')' and '-' from words
+        char[] temp = new char[currentWord.Length]; // Needed a new array to index my currentWord
         for (int j = 0; j < currentWord.Length; j++)
         {   
             if (currentWord[j] == '(' || currentWord[j] == ')' || currentWord[j] == '-')
@@ -54,7 +55,7 @@ for (int i = 0; i < storyWords.Length; i++)
         {
             Console.Write($"Give me a/an {currentWord[1..(currentWord.Length - 2)]}: ");
             currentWord = Console.ReadLine();
-            newStory += currentWord + ".";
+            newStory += currentWord + ". ";
         }
         else
         {
@@ -63,8 +64,12 @@ for (int i = 0; i < storyWords.Length; i++)
             newStory += currentWord + " ";
         }
     }
+    // Adds non-replaceable words to the newStory
     else
     {
         newStory += currentWord + " ";
     }
 }
+
+// Step 5
+Console.WriteLine(newStory);
